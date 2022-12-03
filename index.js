@@ -27,20 +27,20 @@ app.post("/api/metaversodasgalaxias/suggestions", async (req, res)=>{
     let email = req.body.email;
     let suggestionUser = req.body.suggestion;
     
-    // await suggestion.set(name, {
-    //     name: name,
-    //     email: email,
-    //     suggestion: suggestionUser
-    // })
-
-    // let item = await suggestion.get(name)
-    
-
-    let item = {
-        nome: name,
+    await suggestion.set(name, {
+        name: name,
         email: email,
         suggestion: suggestionUser
-    }
+    })
+
+    let item = await suggestion.get(name)
+    
+
+    // let item = {
+    //     nome: name,
+    //     email: email,
+    //     suggestion: suggestionUser
+    // }
 
     res.json({
         message: "OK",
