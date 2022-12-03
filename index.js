@@ -54,7 +54,7 @@ app.get("/getItemMetaversoSugesstion/:key", async (req, res)=>{
 })
 
 app.get("/getItemMetaversoSugesstion", async (req, res)=>{
-    let item = await suggestion.get();
+    let item = await suggestion.scan();
     res.json({
         item: item
     })
