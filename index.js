@@ -44,5 +44,24 @@ app.post("/api/metaversodasgalaxias/suggestions", async (req, res)=>{
     })
 })
 
+
+app.get("/getItemMetaversoSugesstion/:key", async (req, res)=>{
+    let key = req.params.key 
+    let item = await suggestion.get(key);
+    res.json({
+        item: item
+    })
+})
+
+app.get("/getItemMetaversoSugesstion", async (req, res)=>{
+    let item = await suggestion.get();
+    res.json({
+        item: item
+    })
+})
+
+
+
+
 app.listen(port, ()=>console.log("Server on"))
 
