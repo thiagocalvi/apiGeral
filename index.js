@@ -3,6 +3,14 @@ const bodyParser = require('body-parser');
 const port = 3030;
 const app = express();
 
+
+// database
+
+const CyclicDb = require("@cyclic.sh/dynamodb")
+const db = CyclicDb("black-trout-ringCyclicDB")
+
+const suggestion = db.collection("suggestion") 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -14,11 +22,22 @@ app.get("/",(req, res)=>{
     })
 })
 
-app.post("/send", (req, res)=>{
-    let message = req.body.name;
+app.post("/api/metaversodasgalaxias/suggestions", async (req, res)=>{
+    let name = req.body.name;
+    let email = req.body.email;
+    let suggestionUser = req.body.suggestion;
+    
+    await suggestion.set(name, {
+        name: name,
+        email: email,
+        suggestion: suggestionUser
+    })
 
+    let item = await suggestion.get(name)
+    
     res.json({
-        message: "Hello world " + message
+        message: "OK",
+        item: item
     })
 })
 
