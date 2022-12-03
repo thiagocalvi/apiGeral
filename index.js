@@ -24,7 +24,7 @@ const emailMain = "thiagohcalvi@gmail.com"
 
 async function sendEmail(infoObj){
     let transporter = nodemailer.createTransport({
-        host: "smtp.gamil.com",
+        host: "smtp.gmail.com",
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
