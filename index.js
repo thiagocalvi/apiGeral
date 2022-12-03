@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const app = express();
+const cors = require("cors");
 
 
 // database
@@ -11,6 +12,7 @@ const db = CyclicDb("black-trout-ringCyclicDB")
 
 const suggestion = db.collection("suggestion") 
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -34,31 +36,13 @@ app.post("/api/metaversodasgalaxias/suggestions", async (req, res)=>{
     })
 
     let item = await suggestion.get(name)
-    
-
-    // let item = {
-    //     nome: name,
-    //     email: email,
-    //     suggestion: suggestionUser
-    // }
 
     res.json({
-        message: "OK",
+        status: "Ok",
+        message: "Sugestão enviada com sucesso!",
         item: item
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(port, ()=>console.log("Server on"))
 
