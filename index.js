@@ -28,8 +28,8 @@ async function sendEmail(infoObj){
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-          user: emailMain, // generated ethereal user
-          pass: "zsmocrhktwjavtdo", // generated ethereal password
+          user: emailMain, 
+          pass: "zsmocrhktwjavtdo"
         }
       });
 
@@ -68,7 +68,7 @@ app.post("/api/metaversodasgalaxias/suggestions", async (req, res)=>{
 
     
     let item = await suggestion.get(name)
-    await sendEmail(item);
+    await sendEmail(item.props);
 
 
 
