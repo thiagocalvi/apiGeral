@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const port = 3030;
+const port = process.env.PORT || 3000;
 const app = express();
 
 
@@ -27,14 +27,21 @@ app.post("/api/metaversodasgalaxias/suggestions", async (req, res)=>{
     let email = req.body.email;
     let suggestionUser = req.body.suggestion;
     
-    await suggestion.set(name, {
-        name: name,
+    // await suggestion.set(name, {
+    //     name: name,
+    //     email: email,
+    //     suggestion: suggestionUser
+    // })
+
+    // let item = await suggestion.get(name)
+    
+
+    let item = {
+        nome: name,
         email: email,
         suggestion: suggestionUser
-    })
+    }
 
-    let item = await suggestion.get(name)
-    
     res.json({
         message: "OK",
         item: item
