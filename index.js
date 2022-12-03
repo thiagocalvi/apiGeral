@@ -16,6 +16,36 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+// nodemailer
+const nodemailer = require("nodemailer");
+
+const emailMain = "thiagohcalvi@gmail.com"
+
+async function sendEmail(infoObj){
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gamil.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: emailMain, // generated ethereal user
+          pass: "zsmocrhktwjavtdo", // generated ethereal password
+        }
+      });
+
+    await transporter.sendMail({
+        from:`Metaverso das Galxias <${emailMain}>` , // sender address
+        to: `${infoObj.email}`, // list of receivers
+        subject: "Obrigado pela sugestão!", // Subject line
+        text: `Olá ${infoObj.name}, tudo bem? Espero que sim. \n Gostariamos de agradecer por compartilhar sua opinião, isso nos ajudara a contruir um metaverso que todo gostem \n Atenciosamete, Metaverso das Galaxias`, // plain text body
+      });
+    
+
+}
+
+
+
+
 app.get("/",(req, res)=>{
     res.json({
         err: false,
@@ -35,7 +65,12 @@ app.post("/api/metaversodasgalaxias/suggestions", async (req, res)=>{
         suggestion: suggestionUser
     })
 
+
+    
     let item = await suggestion.get(name)
+    await sendEmail(item);
+
+
 
     res.json({
         status: "Ok",
