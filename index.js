@@ -34,7 +34,7 @@ async function sendEmail(infoObj){
       });
 
     await transporter.sendMail({
-        from:`Metaverso das Galxias <${emailMain}>` , // sender address
+        from:`Metaverso das Galaxia <${emailMain}>` , // sender address
         to: `${infoObj.email}`, // list of receivers
         subject: "Obrigado pela sugestão!", // Subject line
         text: `Olá ${infoObj.name}, tudo bem? Espero que sim. \n Gostariamos de agradecer por compartilhar sua opinião, isso nos ajudara a contruir um metaverso que todo gostem \n Atenciosamete, Metaverso das Galaxias`, // plain text body
